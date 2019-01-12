@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Head Tag Contents-->
+    <% include ../partials/head %>
+</head>
+<body>
+    <!-- NavBar-->
+    <header>
+        <%if (user != undefined){ %>
+            <% include ../partials/header %>      
+        <% } %>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <%-body %>
+    </main>
+    
+    <!-- Footer Content -->
+    <footer>
+        <% include ../partials/footer %>
+    </footer>
+</body>
+</html>

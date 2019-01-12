@@ -1,0 +1,107 @@
+<% layout('../layout/main') %>
+
+    <div id="weather-main" class="container">
+        <!-- Weather Search Block -->
+        <div id="weather-search" class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+                <div id="imaginary_container"> 
+                    <h1 class="text-center">Find City Weather Info</h1><br>
+                    <div class="input-group stylish-input-group">
+                        <input type="text" id="weather-search-input" class="form-control"  placeholder="Search" >
+                        <span class="input-group-addon">
+                            <button type="button" id="weather-search-btn">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>  
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br><br>
+        <!-- Search History Block -->
+        <div id="search-history-block" style="text-align: center">
+            <!-- Trigger the history modal with a button -->
+            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#historyModal"><i class="fa fa-clock"></i> Show History</button>
+            
+
+            <!-- History Modal -->
+            <div id="historyModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <!-- History Modal content-->
+                    <div class="modal-content">
+                        <h4 class="text-center text-uppercase">Your Weather - Search History</h4>
+                        <% if (!userSearchHistory || userSearchHistory.length <= 0) { %>
+                            <hr>
+                            <p class="text-center">
+                                <i class="fa fa-frown-open fa-3x"></i>
+                            </p> 
+                            <h4 class="text-center" style="color: #a5a5a5; padding-bottom: 20px;">No search history</h4>
+                        <% } else { %>
+                            <div class="list-group" id="weather-search-history-listing">
+                                <% for(var i=0; i < userSearchHistory.length; i++) { %>
+                                    <a href="#" class="list-group-item text-capitalize"><%= userSearchHistory[i].cityName %> <span style="padding: 10px; margin-top: -5px;" class="label label-primary pull-right text-uppercase check-weather-again-btn" data-city-name="<%= userSearchHistory[i].cityName %>">Check Again</span></a>
+                                <% } %>
+                            </div>
+                        <% } %>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Weather Results Listing Block -->
+        <div id="weather-results-listing" class="row">
+        
+
+        </div>
+
+        <!-- Weather Card Template -->
+        <div id="weather-card-template" class="hidden">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="box-shadow-card text-center" style="padding:30px; height: 280px;">
+                    <img src="${data.imgSrc}" />
+                    <h2>${data.cityName}</h2>
+                    <h3 style="color: #a5a5a5;">
+                        <div class="col-md-6 text-right" style="padding-right: 0px;">
+                            <span class="climate-temp kelvin">${data.temperature.kelvin}</span>
+                            <span class="climate-temp deg hidden">${data.temperature.deg}</span>
+                            <span class="climate-temp fahren hidden">${data.temperature.fahren}</span>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            <sup>
+                                <span class="climate-toggle active" data-temp-type="kelvin">&deg;K</span> |
+                                <span class="climate-toggle" data-temp-type="deg">&deg;C</span> | 
+                                <span class="climate-toggle" data-temp-type="fahren">&deg;F</span>
+                            </sup>
+                        </div>
+                    </h3>
+                    <h4>
+                        <small class="pull-left"> 
+                            <p><i class="fa fa-wind"></i></p> 
+                            Wind 
+                            <p>${data.windSpeed}</p>
+                        </small>
+                        <small class="pull-right"> 
+                            <p><i class="fa fa-tint"></i></p> 
+                            Humidity 
+                            <p>${data.humidity}</p>
+                        </small>
+                    </h4>
+                </div>
+            </div>
+        </div>
+
+        <!-- Weather Not Found Template -->
+        <div id="weather-not-found-template" class="hidden">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="box-shadow-card text-center text-danger" style="padding:30px; padding-top: 80px; height: 280px;">
+                    <i class="fa fa-thermometer-empty fa-5x"></i> 
+                     <br>
+                    <h3 style="color: #a5a5a5;">Weather Not Found</h3>
+                </div>
+            </div>
+        </div>
+        
+    </div>

@@ -1,0 +1,27 @@
+<% layout('../layout/main') %>
+
+    <div class="container">
+        <h1>User Profile</h1>
+        <form id="register-form" action="/users" method="post" role="form">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" disabled="disabled" name="name" id="name" tabindex="1" class="form-control" placeholder="Name" value="<%= user.name %>">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" disabled="disabled" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="<%= user.email %>">
+            </div>
+            <div class="form-group">
+                <label for="city">City</label>
+                <input type="text" disabled="disabled" name="city" id="city" tabindex="1" class="form-control" placeholder="City" value="<%= user.city %>">
+            </div>
+            <div class="form-group">
+                <label for="country">Country</label>
+                <input type="text" disabled="disabled" name="country" id="country" tabindex="1" class="form-control" placeholder="Country" value="<%= user.country %>">
+            </div>
+            <div class="form-group">
+                <label for="mobile">Mobile</label>
+                <input type="number" disabled="disabled" name="mobile" id="mobile" minlength="10" maxlength="10" tabindex="1" class="form-control" placeholder="Mobile no." value="<%= user.mobile %>">
+            </div>
+        </form>
+    </div>
